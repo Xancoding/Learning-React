@@ -1,13 +1,95 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+  user-select: none;  /* 取消选中文本 */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card-body {
+  width: 100%;
+  height: 100%;
+}
+
+.calculator {
+  float: left;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 6rem);
+  grid-template-rows: minmax(6rem, auto) repeat(8, 4rem);
+  gap: 1px;
+  background-color: rgba(230, 230, 230, 0.75);
+  width: calc(24rem + 6px);
+  height: 640px;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+.history-record {
+  float: left;
+  background-color: rgba(230, 230, 230, 0.75);
+  width: 30%;
+  height: 640px;
+  border: 2px solid black;
+  margin-left: 1px;
+}
+
+.history-record-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.history-record-content {
+  margin-top: 1px;
+}
+
+.output {
+  grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.current-output {
+  font-size: 3rem;
+}
+
+.calculator > button:hover {
+  background-color: #B5B5B5;
+}
+
+.calculator > button {
+  background-color: #f7f7f7;
+}
+
+.calculator > .button-Del {
+  grid-column: 3 / span 2;
+  background-color: lightcoral;
+}
+
+.calculator > .button-ac {
+  grid-column: 1 / span 2;
+  background-color: lightcoral;
+}
+
+.calculator > .button-Del:hover {
+  grid-column: 3 / span 2;
+  background-color: rgb(237, 108, 108);
+}
+
+.calculator > .button-ac:hover {
+  grid-column: 1 / span 2;
+  background-color: lightcoral;
+}
+
+.calculator > .button-equal {
+  background-color: #8abae0;
+}
+
+.calculator > .button-equal:hover {
+  background-color: #4599db;
 }
