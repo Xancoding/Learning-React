@@ -10,7 +10,7 @@ class Calculator extends Component {
     formater: Intl.NumberFormat('en-us')
   };
 
-  format = number => {
+  format = number => {  /* 格式化 */
     if (number === "") return "";
     const [integer, decimal] = number.split('.');
     if (decimal === undefined)
@@ -18,28 +18,25 @@ class Calculator extends Component {
     return `${this.state.formater.format(integer)}.${decimal}`
   }
 
-
   render() { 
     return (
       <Base>
           <div className="calculator">
             <div className="output">
               <div className="last-output">
-              {this.format(this.props.lastOperand)} {this.props.operation}
+              {this.props.lastOperand} {this.props.operation}
               </div>
               <div className="current-output">
                 {this.format(this.props.currentOperand)}
               </div>
             </div>
+            <button>ln</button>
+            <button>|x|</button>
             <button onClick={this.props.clear} className='button-ac'>AC</button>
             <button onClick={this.props.delete_digit} className='button-Del'>Del</button>
             <button>sin</button>
             <button>cos</button>
             <button>tan</button>
-            <button>ln</button>
-            <button>|x|</button>
-            <button>(</button>
-            <button>)</button>
             <OperationButton operation={"mod"} />
             <button>1/x</button>
             <button>X²</button>
@@ -55,18 +52,23 @@ class Calculator extends Component {
             <OperationButton operation={"-"} />
             <DigitButton digit={"1"} />
             <DigitButton digit={"2"} />
-            <DigitButton digit={"3"} />
+            <DigitButton digit={"3"} className='button' />
             <OperationButton operation={"+"} />
             <button>+/-</button>
             <DigitButton digit={"0"} />
             <DigitButton digit={"."} />
             <button onClick={this.props.evaluate} className='button-equal'>=</button>
-</div>
+            <button>(</button>
+            <button>)</button>
+            <button>A(x)/B(x)</button>
+            <button>升幂/降幂</button>
+          </div>
+            
           
           <div className="history-record">
             <div className="history-record-title">历史记录</div>
             <div className="history-record-content">
-              
+              2+98*2+9*99+(66-5)*96
             </div>
           </div>
       </Base>
@@ -79,21 +81,22 @@ const mapStateToProps = (state, props) => {
       currentOperand: state.currentOperand,
       lastOperand: state.lastOperand,
       operation: state.operation,
+      expression: state.expression,
   }
 };
 
 const mapDispatchToProps = {
-  delete_digit: () => {
+  delete_digit: () => {  /* 删除 */
       return {
           type: ACTIONS.DELETE_DIGIT,
       }
   },
-  clear: () => {
+  clear: () => {  /* 清空 */
       return {
           type: ACTIONS.CLEAR,
       }
   },
-  evaluate: () => {
+  evaluate: () => {  /* 计算 */
       return {
           type: ACTIONS.EVALUATE,
       }

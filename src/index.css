@@ -55,7 +55,7 @@ body {
 }
 
 .current-output {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .calculator > button:hover {
@@ -67,23 +67,19 @@ body {
 }
 
 .calculator > .button-Del {
-  grid-column: 3 / span 2;
-  background-color: lightcoral;
+  background-color: lightyellow;
 }
 
 .calculator > .button-ac {
-  grid-column: 1 / span 2;
-  background-color: lightcoral;
+  background-color: lightyellow;
 }
 
 .calculator > .button-Del:hover {
-  grid-column: 3 / span 2;
-  background-color: rgb(237, 108, 108);
+  background-color: rgb(249, 249, 194);
 }
 
 .calculator > .button-ac:hover {
-  grid-column: 1 / span 2;
-  background-color: lightcoral;
+  background-color: rgb(249, 249, 194);
 }
 
 .calculator > .button-equal {

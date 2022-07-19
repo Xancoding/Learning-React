@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ACTIONS from '../../redux/actions';
 import { connect } from 'react-redux';
+import ACTIONS from '../../redux/actions';
 
 class DigitButton extends Component {
     state = {  };

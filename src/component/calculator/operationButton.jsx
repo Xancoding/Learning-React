@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ACTIONS from '../../redux/actions';
 
-
 class OperationButton extends Component {
     state = {  } 
     render() { 
@@ -21,7 +20,7 @@ class OperationButton extends Component {
 const mapDispatchToProps = {
     choose_operation: operation => {
         return {
-            type: ACTIONS.CHOOST_OPERATION,
+            type: ACTIONS.CHOOSE_OPERATION,
             operation: operation,
         }
     }

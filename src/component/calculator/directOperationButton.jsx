@@ -5,10 +5,25 @@ import ACTIONS from '../../redux/actions';
 class DirectOperationButton extends Component {
   state = {  } 
   render() { 
-    return (
-      <h1>HEllO</h1>
-    );
+      return (
+          <button
+              onClick={() => {
+                  this.props.direct_evaluate(this.props.operation);
+              }}
+          >
+              {this.props.operation}
+          </button>
+      );
   }
 }
 
-export default DirectOperationButton;
+const mapDispatchToProps = {
+  direct_evaluate: digit => {
+    return {
+      type: ACTIONS.direct_evaluate,
+      operation: operation,
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(DirectOperationButton);
