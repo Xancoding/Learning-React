@@ -2,27 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ACTIONS from '../../redux/actions';
 
-class DigitButton extends Component {
+class Button extends Component {
     state = {  };
 
     render() { 
         return (
             <button
-                onClick={() => this.props.add_digit(this.props.digit)}
+                onClick={() => this.props.add(this.props.data)}
             >
-                {this.props.digit}
+                {this.props.data}
             </button>
         );
     }
 }
 
 const mapDispatchToProps = {
-    add_digit: digit => {
+    add: data => {
         return {
-            type: ACTIONS.ADD_DIGIT,
-            digit: digit,
+            type: ACTIONS.ADD,
+            data: data,
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(DigitButton);
+export default connect(null, mapDispatchToProps)(Button);

@@ -1,9 +1,9 @@
 const ACTIONS = {
-  ADD_DIGIT: "add-digit",
-  DELETE_DIGIT: "delete-digit",
-  CHOOSE_OPERATION: "choose-operation",
+  ADD: "add",
+  DELETE: "delete",
   CLEAR: "clear",
-  EVALUATE: "evaluate"
+  EVALUATE: "evaluate",
+  PERMUTATION: "permutation",
 };
 
 export default ACTIONS;

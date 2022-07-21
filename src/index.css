@@ -1,91 +1,66 @@
-body {
-  margin: 0;
-}
 * {
   box-sizing: border-box;
   user-select: none;  /* 取消选中文本 */
 }
 
-.card-body {
+body {
+  margin: 0;
   width: 100%;
-  height: 100%;
-}
-
-.calculator {
-  float: left;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(4, 6rem);
-  grid-template-rows: minmax(6rem, auto) repeat(8, 4rem);
-  gap: 1px;
-  background-color: rgba(230, 230, 230, 0.75);
-  width: calc(24rem + 6px);
-  height: 640px;
-  margin: 0 auto;
-  border: 2px solid black;
-}
-
-.history-record {
-  float: left;
-  background-color: rgba(230, 230, 230, 0.75);
-  width: 30%;
-  height: 640px;
-  border: 2px solid black;
-  margin-left: 1px;
-}
-
-.history-record-title {
-  font-size: large;
-  font-weight: bold;
-}
-
-.history-record-content {
-  margin-top: 1px;
-}
-
-.output {
-  grid-column: 1 / span 4;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-around;
-  padding: 10px;
-  word-wrap: break-word;
-  word-break: break-all;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#e66465, #9198e5);}
+
+.container {
+  width: 360px;
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-.current-output {
-  font-size: 2rem;
+.container .tips .tips-content {
+  color: #af012d;
 }
 
-.calculator > button:hover {
-  background-color: #B5B5B5;
+.container .history-record .history-record-content {
+  color: #0069fe;
+  font-size: 16px;
 }
 
-.calculator > button {
-  background-color: #f7f7f7;
+.container .calculator .output {
+  width: 100%;
+  height: 100px;
+  margin: 0 3px;
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  text-align: right;
+  padding-right: 10px;
+  background-color: transparent;
 }
 
-.calculator > .button-Del {
-  background-color: lightyellow;
+.calculator button {
+  height: 65px;
+  color: #fff;
+  width: calc(100% / 4 - 5px);
+  background: transparent;
+  border-radius: 12px;
+  margin-top: 15px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.calculator > .button-ac {
-  background-color: lightyellow;
+.calculator button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.calculator > .button-Del:hover {
-  background-color: rgb(249, 249, 194);
-}
 
-.calculator > .button-ac:hover {
-  background-color: rgb(249, 249, 194);
-}
 
-.calculator > .button-equal {
-  background-color: #8abae0;
-}
-
-.calculator > .button-equal:hover {
-  background-color: #4599db;
-}

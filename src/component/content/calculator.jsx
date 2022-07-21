@@ -1,94 +1,77 @@
 import React, { Component } from 'react';
-import Base from './base';
 import { connect } from 'react-redux';
-import OperationButton from '../calculator/operationButton';
-import DigitButton from '../calculator/digitButton';
 import ACTIONS from '../../redux/actions';
+import Button from './button';
 
 class Calculator extends Component {
   state = {
-    formater: Intl.NumberFormat('en-us')
   };
-
-  format = number => {  /* 格式化 */
-    if (number === "") return "";
-    const [integer, decimal] = number.split('.');
-    if (decimal === undefined)
-        return this.state.formater.format(integer);
-    return `${this.state.formater.format(integer)}.${decimal}`
-  }
 
   render() { 
     return (
-      <Base>
+      <React.Fragment>
+
+        <div className='container'>
           <div className="calculator">
             <div className="output">
-              <div className="last-output">
-              {this.props.lastOperand} {this.props.operation}
-              </div>
-              <div className="current-output">
-                {this.format(this.props.currentOperand)}
-              </div>
+                {this.props.expression}
             </div>
-            <button>ln</button>
-            <button>|x|</button>
-            <button onClick={this.props.clear} className='button-ac'>AC</button>
-            <button onClick={this.props.delete_digit} className='button-Del'>Del</button>
-            <button>sin</button>
-            <button>cos</button>
-            <button>tan</button>
-            <OperationButton operation={"mod"} />
-            <button>1/x</button>
-            <button>X²</button>
-            <button>√x</button>
-            <OperationButton operation={"÷"} />
-            <DigitButton digit={"7"} />
-            <DigitButton digit={"8"} />
-            <DigitButton digit={"9"} />
-            <OperationButton operation={"×"} />
-            <DigitButton digit={"4"} />
-            <DigitButton digit={"5"} />
-            <DigitButton digit={"6"} />
-            <OperationButton operation={"-"} />
-            <DigitButton digit={"1"} />
-            <DigitButton digit={"2"} />
-            <DigitButton digit={"3"} className='button' />
-            <OperationButton operation={"+"} />
-            <button>+/-</button>
-            <DigitButton digit={"0"} />
-            <DigitButton digit={"."} />
-            <button onClick={this.props.evaluate} className='button-equal'>=</button>
-            <button>(</button>
-            <button>)</button>
-            <button>A(x)/B(x)</button>
-            <button>升幂/降幂</button>
+            <button onClick={this.props.clear}>AC</button>
+            <button onClick={this.props.delete}>DEL</button>
+            <Button data={"%"} />
+            <Button data={"/"} />
+            <Button data={"7"} />
+            <Button data={"8"} />
+            <Button data={"9"} />
+            <Button data={"*"} />
+            <Button data={"4"} />
+            <Button data={"5"} />
+            <Button data={"6"} />
+            <Button data={"-"} />
+            <Button data={"1"} />
+            <Button data={"2"} />
+            <Button data={"3"} />
+            <Button data={"+"} />
+            <Button data={"0"} />
+            <Button data={"00"} />
+            <Button data={"."} />
+            <button onClick={this.props.evaluate}>=</button>
+            <Button data={"("} />
+            <Button data={")"} />
+            <Button data = {"x"} />
+            <button onClick={this.props.permutation}>ASC/DESC</button>
           </div>
-            
-          
+
+          <div className="tips">
+            <div className="tips-title">Tips</div>
+            <div className="tips-content">{this.props.tips}</div>
+          </div>
+
           <div className="history-record">
-            <div className="history-record-title">历史记录</div>
+            <div className="history-record-title">History</div>
             <div className="history-record-content">
-              2+98*2+9*99+(66-5)*96
+              {this.props.history}
             </div>
           </div>
-      </Base>
+        </div>
+
+      </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = (state, props) => {
   return {
-      currentOperand: state.currentOperand,
-      lastOperand: state.lastOperand,
-      operation: state.operation,
       expression: state.expression,
+      history: state.history,
+      tips: state.tips,
   }
 };
 
 const mapDispatchToProps = {
-  delete_digit: () => {  /* 删除 */
+  delete: () => {  /* 删除 */
       return {
-          type: ACTIONS.DELETE_DIGIT,
+          type: ACTIONS.DELETE,
       }
   },
   clear: () => {  /* 清空 */
@@ -100,7 +83,12 @@ const mapDispatchToProps = {
       return {
           type: ACTIONS.EVALUATE,
       }
-  }
+  },
+  permutation: () => {  /* 升降序切换 */
+      return {
+          type: ACTIONS.PERMUTATION,
+      }
+  },
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
