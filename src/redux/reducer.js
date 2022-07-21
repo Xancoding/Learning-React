@@ -192,12 +192,58 @@ const is_operator = data => {  /* 判断是否为运算符 */
     ) return true;
     else return false
 }
+const is_digit = data => {  /* 判定是否为操作数 */
+    if (data === '0' ||
+    data === '1'  ||
+    data === '2'  ||
+    data === '3'  ||
+    data === '4'  ||
+    data === '5'  ||
+    data === '6'  ||
+    data === '7'  ||
+    data === '8'  ||
+    data === '9'
+    ) return true;
+    else return false;
+}
 
-const judge = (state) => {  /* 评判表达式 */
-    let {expression} = state;
+const judge = (expression) => {  /* 评判表达式 */
     let tips = [];
-    let brackets = expression.split("(").length - expression.split(")").length;
-    if (brackets !== 0) tips.push('\n括号不匹配');
+    console.log(expression);
+
+    let size = 0;  /* 括号判定 */
+    for (let i = 0; i < expression.length; i++) {
+        if (expression[i] === '(') {
+            size++;
+        } else if (expression[i] === ')') {
+            size--;
+            if (size < 0) {
+                tips.push('括号不匹配\n');
+                break;
+            }
+        }
+    }
+    if (size !== 0) {
+        tips.push('括号不匹配\n');
+    }
+
+    /* 操作数与运算符判定 */
+    if (is_operator(expression[expression.length - 1])) {  /* 表达式末尾为运算符，需要操作数 */
+        tips.push('请输入操作数\n');
+    }
+
+    /* 一元多项式判定 */
+    if (expression[expression.length - 1] === 'x') {
+        if (!is_digit(expression[expression.length - 2])) {
+            tips.push('请输入x的系数\n');
+        }
+        tips.push('请输入x的指数\n');
+    }
+
+    if (expression.indexOf('x') !== -1 && expression.indexOf('(') === -1) {
+        tips.push('请用括号将A(x)orB(x)括起来\n');
+    }
+
     return tips;
 }
 
@@ -216,6 +262,7 @@ const reducer = (state = {
             if (state.overwrite)
                 return {
                     ...state,
+                    tips: judge(is_operator(action.data) ? "" : action.data) === [] ? [] : judge(is_operator(action.data) ? "" : action.data),
                     expression: is_operator(action.data) ? "" : action.data,
                     overwrite: false,
                 }
@@ -246,11 +293,14 @@ const reducer = (state = {
                 };
             return {
                 ...state,
+                tips: judge(state.expression + action.data) === [] ? [] : judge(state.expression + action.data),
                 expression: state.expression + action.data,
                 is_polynomial: action.data === "x" ? true : state.is_polynomial,
             }
 
         case ACTIONS.DELETE:
+            if (state.expression === "")
+                return state;
             if (state.overwrite)
                 return {
                     ...state,
@@ -258,14 +308,16 @@ const reducer = (state = {
                     overwrite: false,
                     is_polynomial: false,
                 }
-            if (state.expression.slice(0, -1).indexOf("x") === -1)
-                return { /* 删除当前元素后不再有x */
+            if (state.expression[state.expression.length - 1] === 'x'  && state.expression.slice(0, -1).indexOf("x") === -1)
+                return { /* 当前元素为x & 删除当前元素后不再有x */
                     ...state,
+                    tips: judge(state.expression.slice(0, -1)) === state.tips ? state.tips : judge(state.expression.slice(0, -1)),
                     expression: state.expression.slice(0, -1),
                     is_polynomial: false,
                 }
             return {
                 ...state,
+                tips: judge(state.expression.slice(0, -1)) === state.tips ? state.tips : judge(state.expression.slice(0, -1)),
                 expression: state.expression.slice(0, -1),
             }
 
@@ -279,11 +331,6 @@ const reducer = (state = {
         case ACTIONS.EVALUATE:
             if (state.expression === "")
                 return state;
-            // if (judge(state) !== []) /* 表达式有误 */
-            //     return {
-            //         ...state,
-            //         tips: judge(state),
-            //     }
                 
             if (state.is_polynomial === true) /* 计算一元多项式 */
                 return {
