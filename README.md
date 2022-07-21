@@ -1,5 +1,6 @@
 # Calculator
 ## Previews
+<img src="https://git.acwing.com/ZagY/calculator/-/raw/master/screenshot.png" alt="screenshot">
 
 ## Expression Evaluation
 **[JS在线编辑器](https://jsrun.net/new)**
