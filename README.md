@@ -1,4 +1,4 @@
-# Calculator
+# Calculator🍭
 ## Previews
 <img src="https://git.acwing.com/ZagY/calculator/-/raw/master/screenshot.png" alt="screenshot">
 
