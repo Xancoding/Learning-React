@@ -1,4 +1,8 @@
 # Calculator🍭
+## Install
+`npm install`
+## Usage
+`npm start`
 ## Previews
 <img src="https://git.acwing.com/ZagY/calculator/-/raw/master/screenshot.png" alt="screenshot">
 
