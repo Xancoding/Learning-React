@@ -4,7 +4,7 @@
 ## Usage
 `npm start`
 ## Previews
-<img src="https://git.acwing.com/ZagY/calculator/-/raw/master/screenshot.png" alt="screenshot">
+<img src="https://raw.githubusercontent.com/Xancoding/Calculator/master/screenshot.png" alt="screenshot">
 
 ## Expression Evaluation
 **[JS在线编辑器](https://jsrun.net/new)**
