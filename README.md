@@ -1,8 +1,12 @@
 # Calculator🍭
 ## Install
-`npm install`
+```
+npm install
+```
 ## Usage
-`npm start`
+```
+npm start
+```
 ## Previews
 <img src="https://raw.githubusercontent.com/Xancoding/Calculator/master/screenshot.png" alt="screenshot">
 
