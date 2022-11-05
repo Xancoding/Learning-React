@@ -7,7 +7,6 @@
 <img src="https://raw.githubusercontent.com/Xancoding/Calculator/master/screenshot.png" alt="screenshot">
 
 ## Expression Evaluation
-**[JS在线编辑器](https://jsrun.net/new)**
 ```javascript
 function evaluate(expression)
     {
