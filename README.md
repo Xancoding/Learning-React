@@ -1,14 +1,15 @@
 # Calculator🍭
-## Install
+## Previews
+![Calculator](https://raw.githubusercontent.com/Xancoding/Calculator/master/screenshot.png)
+## Project setup
+### Install
 ```
 npm install
 ```
-## Usage
+### Usage
 ```
 npm start
 ```
-## Previews
-<img src="https://raw.githubusercontent.com/Xancoding/Calculator/master/screenshot.png" alt="screenshot">
 
 ## Expression Evaluation
 ```javascript
